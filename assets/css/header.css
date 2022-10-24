@@ -1,0 +1,18 @@
+header {
+  background-color: #5959ce;
+  display: flex;
+  justify-content: space-between; }
+  header ul {
+    list-style: none; }
+    header ul li {
+      display: inline;
+      padding-right: 10px; }
+      header ul li a {
+        font-size: 17px;
+        color: #fff;
+        text-decoration: none; }
+        header ul li a:hover {
+          color: lightgrey; }
+  header h2 {
+    color: #fff;
+    padding-left: 10px; }

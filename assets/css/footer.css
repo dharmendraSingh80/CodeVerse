@@ -1,0 +1,14 @@
+footer {
+  background-color: grey;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap; }
+  footer ul {
+    list-style: none; }
+    footer ul li a {
+      text-decoration: none;
+      color: #fff; }
+      footer ul li a:hover {
+        color: lightgrey; }
+  footer p {
+    padding-left: 5px; }

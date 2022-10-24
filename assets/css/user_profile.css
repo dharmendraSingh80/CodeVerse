@@ -1,3 +1,8 @@
-body{
-    background-color: lightblue;
-}
+body {
+  background-color: #f2eecb; }
+  body div {
+    height: 200px;
+    width: 150px;
+    background-image: url(../images/profile-pic.jpg);
+    background-size: cover;
+    background-position: center; }

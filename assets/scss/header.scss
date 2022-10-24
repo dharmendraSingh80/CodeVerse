@@ -1,0 +1,24 @@
+header{
+    background-color: rgb(89, 89, 206);
+    display: flex;
+    justify-content: space-between;
+    ul{
+        list-style: none;
+        li{
+            display: inline;
+            padding-right: 10px;
+            a{
+                font-size: 17px;
+               color: #fff;
+               text-decoration: none; 
+               &:hover{
+                color: lightgrey;
+                }
+            }
+        }
+    }
+    h2{
+        color: #fff;
+        padding-left: 10px;
+    }
+}
