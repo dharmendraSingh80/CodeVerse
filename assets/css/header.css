@@ -1,7 +1,8 @@
 header {
   background-color: #5959ce;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  height: 50px; }
   header ul {
     list-style: none; }
     header ul li {
