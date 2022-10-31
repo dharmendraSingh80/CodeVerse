@@ -1,8 +1,9 @@
 header{
-    background-color: rgb(89, 89, 206);
+    background-color: #2196f3;
     display: flex;
     justify-content: space-between;
-    height: 50px;
+    padding: 0 10px;
+    box-shadow: 1px 1px 1px 1px lightgrey;
     ul{
         list-style: none;
         li{
