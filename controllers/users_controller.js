@@ -1,6 +1,9 @@
 const User = require('../models/user');
 const fs = require('fs');
 const path = require('path');
+ const crypto = require('crypto');
+const forgetPasswordMailer = require('../mailers/forget_password_mailer');
+const { resolveSoa } = require('dns');
 
 //let's keep it same as before
 module.exports.profile = function(req, res){
@@ -127,4 +130,67 @@ module.exports.destroySession =  function(req, res){
           req.flash('success', 'You have logged out !');
           res.redirect("/");
       });
+}
+
+//forget password start
+
+module.exports.forgetPassword =  (req, res) => {
+      try{
+          res.render('mailers/forget',{
+               title: 'forget'
+          })
+     }catch(error){
+          console.log(error);
+     }
+}
+
+module.exports.forgetVerify = async(req, res) => {
+     try{
+          const email = req.body.email;
+          const userData = await User.findOne({email:email});
+          if(userData){
+               const randomString = crypto.randomBytes(20).toString('hex');
+               const  updatedData = await User.updateOne({email:email}, {$set:{token:randomString}});
+               forgetPasswordMailer.sendResetPasswordMail(userData.name, userData.email, randomString);
+               res.render('mailers/forget', {message: "Please check your mail to reset your password.",title: 'forget'});
+          }else{
+               res.render('mailers/forget', {message: 'User email is incorrect.',title: 'forget'});
+          }
+
+     }catch(error){
+          console.log(error.message);
+     }
+}
+
+
+module.exports.forgetPasswordLoad = async(req, res) => {
+     try{
+          const token = req.query.token;
+          const tokenData = await User.findOne({token:token});
+          if(tokenData){
+               res.render('mailers/forgetMailer/forgetP', {user_id: tokenData._id, title:'forget_password'});
+          }else{
+               res.render('mailers/forgetMailer/404', {message:'Token is Invalid.'});
+          }
+     }catch(error){
+          console.log(error.message);
+     }
+}
+
+module.exports.resetPassword = async (req, res) => {
+     try{
+          const password = req.body.password;
+          const user_id = req.body.user_id;
+          if(password != req.body.confirm_password){
+               req.flash('error', 'Passwords do not match');
+               return res.redirect('back');
+          }
+          const updatedData = await User.findByIdAndUpdate({_id:user_id}, {$set:{
+               password:password, token:''
+          }});
+          req.flash('success', 'Password Successfully changed');
+          res.redirect('/');
+     }catch(error){
+          console.log(error.message);
+     }
 }
