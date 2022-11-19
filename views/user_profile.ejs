@@ -21,4 +21,18 @@
     <p> <%= profile_user.email %></p>
 <%} %>
 
+<% if(user.id != profile_user.id){%>
+<a class="toggle-friend-button"  href="/friendships/friend-toggle/?id=<%=profile_user._id%>">
+   <input id="myBtn" type="button" value="" >
+</a>
+<%} %>
+
 <script src="/js/user_profile.js"></script>
+
+<script src="/js/toggle_friendadd.js"></script>
+<script>
+    $('.toggle-friend-button').each(function(){
+        let self = this;
+        let toggleFriend = new ToggleFriend(self);
+    });
+</script>
