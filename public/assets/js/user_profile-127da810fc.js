@@ -1,0 +1,1 @@
+var loadFile=function(e){var t=document.getElementById("output");t.src=URL.createObjectURL(e.target.files[0]),t.onload=function(){URL.revokeObjectURL(t.src)}};

@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" href="/css/user_profile.css">
+<link rel="stylesheet" href="<%= assetPath('css/user_profile.css') %>">
 
 <img id="output" src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
 
@@ -23,13 +23,13 @@
 
 <% if(user.id != profile_user.id){%>
 <a class="toggle-friend-button"  href="/friendships/friend-toggle/?id=<%=profile_user._id%>">
-   <input id="myBtn" type="button" value="" >
+   <input id="myBtn" type="button" value="ADD" >
 </a>
 <%} %>
 
-<script src="/js/user_profile.js"></script>
+<script src="<%= assetPath('js/user_profile.js')%>"></script>
 
-<script src="/js/toggle_friendadd.js"></script>
+<script src="<%= assetPath('js/toggle_friendadd.js') %>"></script>
 <script>
     $('.toggle-friend-button').each(function(){
         let self = this;

@@ -1,0 +1,4 @@
+body {
+  background-color: #f2eecb; }
+  body #preview img {
+    max-height: 100px; }
