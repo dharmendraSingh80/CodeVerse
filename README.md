@@ -1,4 +1,4 @@
-# codeial
+# CodeVerse
 This is an social media web application built using Node.js, ejs, express and mongoDB
 
 ## Features
